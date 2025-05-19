@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #4f46e5;
+  --secondary-color: #10b981;
+  --background-color: #111827;
+  --text-color: #f3f4f6;
+}
+
+body {
+  @apply bg-gray-900 text-gray-100;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  @apply mx-auto px-4 max-w-7xl;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-lg transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-primary-600 hover:bg-primary-700 text-white;
+}
+
+.card {
+  @apply bg-gray-800 rounded-xl p-6 shadow-lg;
+}
