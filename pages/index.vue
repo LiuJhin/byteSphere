@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollReveal from "~/components/animations/ScrollReveal.vue";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,7 +88,9 @@ onMounted(() => {
     <HomeHeroSection />
 
     <!-- Featured Games -->
-    <HomeFeaturedGames />
+    <ScrollReveal direction="bottom" :distance="100">
+      <HomeFeaturedGames />
+    </ScrollReveal>
 
     <!-- Community Section -->
     <section class="py-20 bg-gray-800 relative overflow-hidden">
@@ -96,53 +99,58 @@ onMounted(() => {
       ></div>
       <div class="container mx-auto px-4 relative">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div ref="communityTextRef">
-            <h2
-              class="glowing-text text-3xl md:text-4xl font-bold text-white mb-6 relative"
-            >
-              加入我们的
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400 animate-gradient-x"
-                >游戏社区</span
+          <ScrollReveal direction="left" :distance="100">
+            <div>
+              <h2
+                class="glowing-text text-3xl md:text-4xl font-bold text-white mb-6 relative"
               >
-            </h2>
-            <p class="text-gray-300 text-lg mb-8 typing-text">
-              与数百万玩家一起分享游戏体验，结交新朋友，参与精彩的社区活动。
-            </p>
-            <button
-              class="btn bg-secondary-500 hover:bg-secondary-600 text-white px-8 py-3 rounded-lg text-lg font-medium transition-all transform hover:scale-105 hover:rotate-1"
-            >
-              立即加入
-              <span
-                class="ml-2 inline-block transform hover:translate-x-1 transition-transform"
-                >→</span
+                加入我们的
+                <span
+                  class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400 animate-gradient-x"
+                  >游戏社区</span
+                >
+              </h2>
+              <p class="text-gray-300 text-lg mb-8 typing-text">
+                与数百万玩家一起分享游戏体验，结交新朋友，参与精彩的社区活动。
+              </p>
+              <button
+                class="btn bg-secondary-500 hover:bg-secondary-600 text-white px-8 py-3 rounded-lg text-lg font-medium transition-all transform hover:scale-105 hover:rotate-1"
               >
-            </button>
-          </div>
-          <div ref="communityImageRef" class="relative">
-            <div
-              class="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-primary-500/30 to-secondary-500/30"
-            >
+                立即加入
+                <span
+                  class="ml-2 inline-block transform hover:translate-x-1 transition-transform"
+                  >→</span
+                >
+              </button>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal direction="right" :distance="100">
+            <div class="relative">
               <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] animate-pulse"
-              ></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="grid grid-cols-3 gap-4 p-8">
-                  <div
-                    v-for="n in 9"
-                    :key="n"
-                    class="w-8 h-8 rounded-full bg-white/10 animate-float"
-                    :style="{
-                      animationDelay: `${n * 0.2}s`,
-                      backgroundColor: `rgba(255,255,255,${
-                        0.1 + (n % 3) * 0.1
-                      })`,
-                    }"
-                  ></div>
+                class="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-primary-500/30 to-secondary-500/30"
+              >
+                <div
+                  class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] animate-pulse"
+                ></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="grid grid-cols-3 gap-4 p-8">
+                    <div
+                      v-for="n in 9"
+                      :key="n"
+                      class="w-8 h-8 rounded-full bg-white/10 animate-float"
+                      :style="{
+                        animationDelay: `${n * 0.2}s`,
+                        backgroundColor: `rgba(255,255,255,${
+                          0.1 + (n % 3) * 0.1
+                        })`,
+                      }"
+                    ></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -161,76 +169,80 @@ onMounted(() => {
         class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.15)_0%,transparent_70%)]"
       ></div>
       <div class="container mx-auto px-4 relative">
-        <div class="flex items-center justify-center mb-16">
-          <CommonCircleLoader :size="60" class="mr-4" />
-          <h2 class="text-4xl md:text-5xl font-bold text-center cyber-text">
-            游戏特性
-            <div class="cyber-line"></div>
-          </h2>
-        </div>
+        <ScrollReveal direction="top" :distance="50">
+          <div class="flex items-center justify-center mb-16">
+            <CommonCircleLoader :size="60" class="mr-4" />
+            <h2 class="text-4xl md:text-5xl font-bold text-center cyber-text">
+              游戏特性
+              <div class="cyber-line"></div>
+            </h2>
+          </div>
+        </ScrollReveal>
 
-        <div
-          ref="featuresRef"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <ScrollReveal :stagger="0.1">
           <div
-            v-for="(feature, index) in features"
-            :key="feature.title"
-            class="feature-card group"
-            :style="{ animationDelay: `${index * 0.1}s` }"
+            ref="featuresRef"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             <div
-              class="relative p-6 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transition-all duration-500 hover:border-primary-500"
+              v-for="(feature, index) in features"
+              :key="feature.title"
+              class="feature-card group"
+              :style="{ animationDelay: `${index * 0.1}s` }"
             >
               <div
-                class="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-secondary-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
-              ></div>
-
-              <!-- 发光边框效果 -->
-              <div class="glow-border"></div>
-
-              <!-- 图标容器 -->
-              <div class="relative z-10">
+                class="relative p-6 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transition-all duration-500 hover:border-primary-500"
+              >
                 <div
-                  class="text-primary-400 mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500"
-                >
-                  <component :is="feature.icon" class="w-8 h-8" />
-                </div>
+                  class="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-secondary-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
 
-                <!-- 标题和描述 -->
-                <h3
-                  class="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors"
-                >
-                  {{ feature.title }}
-                </h3>
-                <p
-                  class="text-gray-400 group-hover:text-gray-300 transition-colors"
-                >
-                  {{ feature.description }}
-                </p>
+                <!-- 发光边框效果 -->
+                <div class="glow-border"></div>
 
-                <!-- 悬停时显示的箭头 -->
-                <div
-                  class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-0 translate-x-4 transition-all duration-300"
-                >
-                  <svg
-                    class="w-6 h-6 text-primary-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <!-- 图标容器 -->
+                <div class="relative z-10">
+                  <div
+                    class="text-primary-400 mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                    <component :is="feature.icon" class="w-8 h-8" />
+                  </div>
+
+                  <!-- 标题和描述 -->
+                  <h3
+                    class="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors"
+                  >
+                    {{ feature.title }}
+                  </h3>
+                  <p
+                    class="text-gray-400 group-hover:text-gray-300 transition-colors"
+                  >
+                    {{ feature.description }}
+                  </p>
+
+                  <!-- 悬停时显示的箭头 -->
+                  <div
+                    class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-0 translate-x-4 transition-all duration-300"
+                  >
+                    <svg
+                      class="w-6 h-6 text-primary-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   </div>
