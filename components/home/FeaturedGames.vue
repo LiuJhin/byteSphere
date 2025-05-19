@@ -5,7 +5,7 @@
         ref="titleRef"
         class="text-3xl md:text-4xl font-bold text-center text-white mb-12"
       >
-        热门游戏
+        项目展示
       </h2>
 
       <div
@@ -61,18 +61,38 @@ const gamesRef = ref<HTMLElement | null>(null);
 const games = [
   {
     id: 1,
-    title: "星际探险",
-    description: "探索浩瀚宇宙，发现未知文明",
-    genre: "科幻冒险",
+    title: "Niko Live",
+    description:
+      "Vue3 + TypeScript + Vite + TailwindCSS + Pinia + TRTC SDK + WebRTC ",
+    genre: "综合在线直播平台",
   },
   {
     id: 2,
-    title: "魔法王国",
+    title: "TaleHub",
+    description:
+      "Vue3 + TypeScript + Vite + TailwindCSS + Pinia + Canvas + IM + ChatGPT",
+    genre: "在线教练平台",
+  },
+  {
+    id: 3,
+    title: "超级大白鲸",
+    description: "在未来都市中书写你的传奇",
+    genre: "动作冒险",
+  },
+  {
+    id: 4,
+    title: "ERP后台管理系统",
+    description: "Vue3 + TypeScript + Vite + TailwindCSS + Pinia ",
+    genre: "直播平台PC端",
+  },
+  {
+    id: 5,
+    title: "大药房小程序",
     description: "成为强大的魔法师，守护和平",
     genre: "奇幻RPG",
   },
   {
-    id: 3,
+    id: 6,
     title: "赛博朋克2077",
     description: "在未来都市中书写你的传奇",
     genre: "动作冒险",
