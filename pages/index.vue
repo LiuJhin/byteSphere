@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollReveal from "~/components/animations/ScrollReveal.vue";
+import HomeDigitalGarden from "~/components/home/DigitalGarden.vue";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,6 +87,9 @@ onMounted(() => {
   <div class="bg-gray-900">
     <!-- Hero Section -->
     <HomeHeroSection />
+
+    <!-- Digital Garden -->
+    <HomeDigitalGarden />
 
     <!-- Featured Games -->
     <ScrollReveal direction="bottom" :distance="100">
