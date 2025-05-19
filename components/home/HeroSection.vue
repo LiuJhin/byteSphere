@@ -26,7 +26,7 @@
         ref="subtitleRef"
         class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto opacity-0"
       >
-        探索无限可能的游戏世界，与全球玩家一起创造属于你的传奇
+        在浏览器画布上编织逻辑与美感的数字经纬，当CSS量子化系统邂逅JS语法糖的浪漫，每个编译成真理的像素都在与亿万用户展开一场关于交互哲学的对话
       </p>
       <div ref="buttonsRef" class="space-x-4 opacity-0">
         <button
