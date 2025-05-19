@@ -387,7 +387,7 @@ const CommunityIcon = defineComponent({
 const navigationItems = ref<NavigationItem[]>([
   { name: "首页", path: "/" },
   {
-    name: "游戏",
+    name: "技术",
     path: "/games",
     isOpen: false,
     icon: GameIcon,
