@@ -35,11 +35,12 @@
             <p class="text-gray-400 text-sm mb-4">{{ game.description }}</p>
             <div class="flex items-center justify-between">
               <span class="text-primary-400 font-medium">{{ game.genre }}</span>
-              <button
+              <NuxtLink
+                :to="`/detail/${game.id}`"
                 class="btn bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm transition-colors"
               >
                 了解更多
-              </button>
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -58,46 +59,30 @@ gsap.registerPlugin(ScrollTrigger);
 const titleRef = ref<HTMLElement | null>(null);
 const gamesRef = ref<HTMLElement | null>(null);
 
-const games = [
+const games = ref([
   {
-    id: 1,
-    title: "Niko Live",
+    id: "1",
+    title: "字节球大冒险",
     description:
-      "Vue3 + TypeScript + Vite + TailwindCSS + Pinia + TRTC SDK + WebRTC ",
-    genre: "综合在线直播平台",
+      "一个充满趣味性的休闲游戏，在这里你将操控字节球进行各种有趣的冒险。",
+    genre: "休闲游戏",
+    coverImage: "/images/games/game1.jpg",
   },
   {
-    id: 2,
-    title: "TaleHub",
-    description:
-      "Vue3 + TypeScript + Vite + TailwindCSS + Pinia + Canvas + IM + ChatGPT",
-    genre: "在线教练平台",
+    id: "2",
+    title: "代码勇士",
+    description: "在这个编程世界中，你将成为一名代码勇士，解决各种编程难题。",
+    genre: "教育游戏",
+    coverImage: "/images/games/game2.jpg",
   },
   {
-    id: 3,
-    title: "超级大白鲸",
-    description: "在未来都市中书写你的传奇",
-    genre: "动作冒险",
+    id: "3",
+    title: "像素方块",
+    description: "一个创意十足的像素风格游戏，让你体验不一样的方块世界。",
+    genre: "创意游戏",
+    coverImage: "/images/games/game3.jpg",
   },
-  {
-    id: 4,
-    title: "ERP后台管理系统",
-    description: "Vue3 + TypeScript + Vite + TailwindCSS + Pinia ",
-    genre: "直播平台PC端",
-  },
-  {
-    id: 5,
-    title: "大药房小程序",
-    description: "成为强大的魔法师，守护和平",
-    genre: "奇幻RPG",
-  },
-  {
-    id: 6,
-    title: "赛博朋克2077",
-    description: "在未来都市中书写你的传奇",
-    genre: "动作冒险",
-  },
-];
+]);
 
 onMounted(() => {
   // 标题动画

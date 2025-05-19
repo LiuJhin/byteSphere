@@ -13,6 +13,7 @@
     "@pinia/nuxt": "^0.11.0",
     "@tailwindcss/postcss": "^4.1.7",
     "@types/node": "^22.15.19",
+    "@vueuse/core": "^13.2.0",
     "gsap": "^3.13.0",
     "nuxt": "^3.17.3",
     "pinia": "^3.0.2",

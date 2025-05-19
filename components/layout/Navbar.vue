@@ -429,7 +429,7 @@ const navigationItems = ref<NavigationItem[]>([
             ),
           },
           {
-            name: "角色扮演",
+            name: "文章",
             path: "/games/rpg",
             badge: { text: "热门", type: "success" },
           },

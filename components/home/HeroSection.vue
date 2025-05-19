@@ -4,7 +4,13 @@
   >
     <!-- 背景动画 -->
     <div class="absolute inset-0 z-0">
-      <div ref="particles" class="absolute inset-0 opacity-20"></div>
+      <ClientOnly>
+        <div
+          v-if="isMounted"
+          ref="particles"
+          class="absolute inset-0 opacity-20"
+        ></div>
+      </ClientOnly>
       <div
         class="absolute inset-0 bg-gradient-to-b from-primary-900/50 to-gray-900"
       ></div>
@@ -14,7 +20,10 @@
     <div class="relative z-10 text-center px-4">
       <h1
         ref="titleRef"
-        class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 opacity-0"
+        :class="[
+          'text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6',
+          { 'opacity-0': !isMounted },
+        ]"
       >
         Welcome to
         <span
@@ -24,11 +33,14 @@
       </h1>
       <p
         ref="subtitleRef"
-        class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto opacity-0"
+        :class="[
+          'text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto',
+          { 'opacity-0': !isMounted },
+        ]"
       >
         在浏览器画布上编织逻辑与美感的数字经纬，当CSS量子化系统邂逅JS语法糖的浪漫，每个编译成真理的像素都在与亿万用户展开一场关于交互哲学的对话
       </p>
-      <div ref="buttonsRef" class="space-x-4 opacity-0">
+      <div ref="buttonsRef" :class="['space-x-4', { 'opacity-0': !isMounted }]">
         <button
           class="btn bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded-lg text-lg font-medium transition-all transform hover:scale-105"
         >
@@ -45,7 +57,10 @@
     <!-- 向下滚动指示器 -->
     <div
       ref="scrollIndicatorRef"
-      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0"
+      :class="[
+        'absolute bottom-8 left-1/2 transform -translate-x-1/2',
+        { 'opacity-0': !isMounted },
+      ]"
     >
       <div class="animate-bounce">
         <svg
@@ -67,12 +82,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
+const isMounted = ref(false);
 const titleRef = ref<HTMLElement | null>(null);
 const subtitleRef = ref<HTMLElement | null>(null);
 const buttonsRef = ref<HTMLElement | null>(null);
@@ -81,7 +95,7 @@ const particles = ref<HTMLElement | null>(null);
 
 // 粒子动画
 const createParticle = () => {
-  if (!particles.value) return;
+  if (!particles.value || !isMounted.value) return;
   const particle = document.createElement("div");
   particle.className = "absolute w-2 h-2 bg-white rounded-full";
 
@@ -106,8 +120,21 @@ const createParticle = () => {
   });
 };
 
-onMounted(() => {
+onMounted(async () => {
+  // 确保在客户端
+  if (typeof window === "undefined") return;
+
+  // 注册 GSAP 插件
+  if (typeof gsap.registerPlugin === "function") {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  // 等待下一个 tick，确保 DOM 完全更新
+  await nextTick();
+  isMounted.value = true;
+
   // 入场动画
+  await nextTick();
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
   tl.to(titleRef.value, {
@@ -149,7 +176,10 @@ onMounted(() => {
   const particleInterval = setInterval(createParticle, 200);
 
   // 清理函数
-  return () => clearInterval(particleInterval);
+  return () => {
+    clearInterval(particleInterval);
+    isMounted.value = false;
+  };
 });
 </script>
 
