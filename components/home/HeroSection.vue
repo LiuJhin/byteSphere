@@ -40,12 +40,16 @@
       >
         在浏览器画布上编织逻辑与美感的数字经纬，当CSS量子化系统邂逅JS语法糖的浪漫，每个编译成真理的像素都在与亿万用户展开一场关于交互哲学的对话
       </p>
-      <div ref="buttonsRef" :class="['space-x-4', { 'opacity-0': !isMounted }]">
-        <button
+      <div
+        ref="buttonsRef"
+        :class="['space-x-4 flex justify-center', { 'opacity-0': !isMounted }]"
+      >
+        <NuxtLink
+          to="/technologies"
           class="btn bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded-lg text-lg font-medium transition-all transform hover:scale-105"
         >
           开始探索
-        </button>
+        </NuxtLink>
         <button
           class="btn bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition-all transform hover:scale-105"
         >
