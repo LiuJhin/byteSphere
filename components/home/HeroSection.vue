@@ -50,11 +50,12 @@
         >
           开始探索
         </NuxtLink>
-        <button
+        <NuxtLink
+          to="/articles"
           class="btn bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition-all transform hover:scale-105"
         >
           了解更多
-        </button>
+        </NuxtLink>
       </div>
     </div>
 
